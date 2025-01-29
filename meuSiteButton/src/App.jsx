@@ -9,6 +9,7 @@ function App() {
 }
 
 function Button() {
+
   function click() {
     alert("voce clicou no botão");
   }
@@ -16,9 +17,9 @@ function Button() {
     <div>
       <button
         style={{ padding: "10px 20px", fontSize: "16px", cursor: "pointer" }}
-        onClick={()=>click()}
+        onClick={() => click()}
       >
-        Clique aqui
+        Clique!
       </button>
     </div>
   );
