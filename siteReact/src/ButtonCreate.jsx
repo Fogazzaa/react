@@ -8,7 +8,7 @@ function ButtonCreate() {
     return (
       <div>
         <button
-          style={{ marginTop:'2%', marginLeft:'45%', padding: "10px 20px", fontSize: "16px", cursor: "pointer", backgroundColor:'green', color:'white', borderColor:'transparent'}}
+          style={{ borderRadius:'10px', marginTop:'2%', marginLeft:'44.5%', padding: "10px 20px", fontSize: "16px", cursor: "pointer", backgroundColor:'green', color:'white', borderColor:'transparent'}}
           onClick={() => click()}
         >
           Botão que Cria
