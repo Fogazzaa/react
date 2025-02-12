@@ -7,11 +7,13 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import api from "../axios/axios";
 
 function Cadastro() {
   const [user, setUser] = useState({
+    cpf: "",
     name: "",
-    age: "",
+    data_nascimento: "",
     email: "",
     password: "",
   });
@@ -23,17 +25,20 @@ function Cadastro() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      "Nome: " +
-        user.name +
-        "  -  E-mail: " +
-        user.email +
-        "  -  Idade: " +
-        user.age +
-        "  -  Senha: " +
-        user.password
-    );
+    Cadastro();
   };
+
+  async function Cadastro() {
+    await api.postCadastro(user).then(
+      (response) => {
+        alert(response.data.message);
+      },
+      (error) => {
+        console.log(error);
+        alert(error.response.data.error);
+      }
+    );
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -68,7 +73,7 @@ function Cadastro() {
             required
             fullWidth
             id="name"
-            label="nome"
+            label="Nome"
             name="name"
             margin="normal"
             value={user.name}
@@ -78,7 +83,7 @@ function Cadastro() {
             required
             fullWidth
             id="email"
-            label="e-mail"
+            label="E-mail"
             name="email"
             margin="normal"
             value={user.email}
@@ -87,19 +92,28 @@ function Cadastro() {
           <TextField
             required
             fullWidth
-            id="age"
-            label="idade"
-            name="age"
+            id="cpf"
+            label="CPF"
+            name="cpf"
             margin="normal"
-            type="number"
-            value={user.age}
+            value={user.cpf}
+            onChange={onChange}
+          />
+          <TextField
+            required
+            fullWidth
+            id="data_nascimento"
+            name="data_nascimento"
+            margin="normal"
+            type="date"
+            value={user.data_nascimento}
             onChange={onChange}
           />
           <TextField
             required
             fullWidth
             id="password"
-            label="senha"
+            label="Senha"
             name="password"
             type="password"
             margin="normal"
