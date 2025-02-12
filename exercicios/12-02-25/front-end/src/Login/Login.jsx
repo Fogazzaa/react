@@ -22,19 +22,24 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-        "  -  E-mail: " +
-        user.email +
-        "  -  Senha: " +
-        user.password
-    );
+    Login();
   };
+
+  async function Login() {
+    await api.postLogin(user).then((response) => {
+      alert(response.data.message)
+    },
+  (error)=>{
+    console.log(error)
+    alert(error.response.data.error)
+  });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          mt: 25,
+          mt: 20,
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
