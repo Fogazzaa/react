@@ -3,59 +3,68 @@ const connect = require("../db/connect");
 module.exports = class userController {
   static async createUser(req, res) {
     const { cpf, email, password, name, data_nascimento } = req.body;
+    const hoje = new Date().toISOString().split("T")[0];
+    const dataNascimentoFormatada = new Date(data_nascimento).toISOString().split("T")[0];
 
-    if (!cpf || !email || !password || !name || !data_nascimento) {
-      return res
+      if (!cpf || !email || !password || !name || !data_nascimento) {
+        return res
+          .status(400)
+          .json({ error: "Todos os campos devem ser preenchidos" });
+      } // else if
+      else if (dataNascimentoFormatada > hoje){
+        return res
         .status(400)
-        .json({ error: "Todos os campos devem ser preenchidos" });
-    } // else if
-    else if (isNaN(cpf) || cpf.length !== 11) {
-      return res.status(400).json({
-        error: "CPF inválido. Deve conter exatamente 11 dígitos numéricos",
-      });
-    } // else if
-    else if (!email.includes("@")) {
-      return res.status(400).json({ error: "Email inválido. Deve conter @" });
-    } // else if
-    else {
-      // Construção da query INSERT
+        .json({ error: "A data está errada" });
+      }
+      else if (isNaN(cpf) || cpf.length !== 11) {
+        return res.status(400).json({
+          error: "CPF inválido. Deve conter exatamente 11 dígitos numéricos",
+        });
+      } // else if
+      else if (!email.includes("@")) {
+        return res.status(400).json({ error: "Email inválido. Deve conter @" });
+      } // else if
+      else {
+        // Construção da query INSERT
 
-      const query = `INSERT INTO usuario (cpf,password,email,name, data_nascimento) VALUES(
+        const query = `INSERT INTO usuario (cpf,password,email,name, data_nascimento) VALUES(
       '${cpf}',
       '${password}',
       '${email}',
       '${name}',
       '${data_nascimento}')`;
 
-      // Executando a query criada
+        // Executando a query criada
 
-      try {
-        connect.query(query, function (err) {
-          if (err) {
-            console.log(err);
-            console.log(err.code);
-            if (err.code === "ER_DUP_ENTRY") {
-              return res
-                .status(400)
-                .json({ error: "O email já está vinculado a outro usuário" });
+        try {
+          connect.query(query, function (err) {
+            if (err) {
+              console.log(err);
+              console.log(err.code);
+              if (err.code === "ER_DUP_ENTRY") {
+                return res
+                  .status(400)
+                  .json({
+                    error: "O email ou CPF já está vinculado a outro usuário",
+                  });
+              } // if
+              else {
+                return res
+                  .status(500)
+                  .json({ error: "Erro Interno do Servidor" });
+              } // else
             } // if
             else {
               return res
-                .status(500)
-                .json({ error: "Erro Interno do Servidor" });
+                .status(201)
+                .json({ message: "Usuário Criado com Sucesso" });
             } // else
-          } // if
-          else {
-            return res
-              .status(201)
-              .json({ message: "Usuário Criado com Sucesso" });
-          } // else
-        }); // connect
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Erro Interno de Servidor" });
-      } // catch
-    } // else
+          }); // connect
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: "Erro Interno de Servidor" });
+        } // catch
+      } // else
   } // CreateUser
 
   static async getAllUsers(req, res) {
