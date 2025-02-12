@@ -7,6 +7,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import api from "../axios/axios";
 
 function Login() {
   const [user, setUser] = useState({
@@ -33,7 +34,7 @@ function Login() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          mt: 8,
+          mt: 25,
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -48,7 +49,7 @@ function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Cadastro - VIO
+          Login - VIO
         </Typography>
         <Box
           component="form"
