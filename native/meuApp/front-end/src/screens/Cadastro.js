@@ -9,32 +9,59 @@ import {
 } from "react-native";
 import api from "../axios/axios";
 
-export default function Login() {
+export default function Cadastro() {
   const [user, setUser] = useState({
+    name: "",
+    cpf: "",
+    data_nascimento: "",
     email: "",
     password: "",
   });
 
-  async function handleLogin() {
-    await api.postLogin(user).then(
+  async function handleCadastro() {
+    await api.postCadastro(user).then(
       (response) => {
         console.log(response.data.message);
-        Alert.alert('OK', response.data.message);
+        Alert.alert("OK", response.data.message);
       },
       (error) => {
-        Alert.alert('Erro', error.response.data.error);
+        Alert.alert("Erro", error.response.data.error);
         console.log(error);
       }
     );
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Faça Login</Text>
+      <Text style={styles.title}>Faça Cadastro</Text>
+      <TextInput
+        placeholder="Nome"
+        value={user.name}
+        onChangeText={(value) => {
+          setUser({ ...user, name: value });
+        }}
+        style={styles.input}
+      />
       <TextInput
         placeholder="E-mail"
         value={user.email}
         onChangeText={(value) => {
           setUser({ ...user, email: value });
+        }}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="CPF"
+        value={user.cpf}
+        onChangeText={(value) => {
+          setUser({ ...user, cpf: value });
+        }}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Data de Nascimento"
+        value={user.data_nascimento}
+        onChangeText={(value) => {
+          setUser({ ...user, data_nascimento: value });
         }}
         style={styles.input}
       />
@@ -46,7 +73,7 @@ export default function Login() {
         }}
         style={styles.input}
       />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
+      <TouchableOpacity onPress={handleCadastro} style={styles.button}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
     </View>
