@@ -13,7 +13,7 @@ function App() {
           <Route path="/users" element={<ListUsers />} />
           <Route path="/eventos" element={<ListEventos />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
