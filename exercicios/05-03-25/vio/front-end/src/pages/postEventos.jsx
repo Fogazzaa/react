@@ -1,12 +1,9 @@
-
 function PostEventos() {
+  return (
+    <div>
+      <h3>Crie Eventos</h3>
+    </div>
+  );
+}
 
-    return (
-      <div>
-        <h5>Criar Eventos</h5>
-      </div>
-    );
-  }
-  
-  export default PostEventos;
-  
+export default PostEventos;

@@ -20,10 +20,7 @@ function Home() {
       <Button  variant="contained" component={Link} to="/ingressos">
         Lista de Ingressos
       </Button>
-      <h3>Crie Eventos</h3>
-      <Button  variant="contained" component={Link} to="/evento/novo">
-        Crie Eventos
-      </Button>
+
     </div>
   );
 }
