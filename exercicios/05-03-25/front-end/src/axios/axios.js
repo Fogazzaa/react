@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 const sheets = {
-  getUsuarios: () => api.get("usuarios/"),
+  getUsuarios: () => api.get("user/"),
   getEventos: () => api.get("evento/"),
   postLogin: () => api.get("login/"),
   postCadastro: () => api.get("user/"),

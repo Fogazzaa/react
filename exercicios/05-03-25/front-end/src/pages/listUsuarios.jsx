@@ -20,9 +20,9 @@ import Button from "@mui/material/Button";
 function listUsuarios() {
   const [users, setUsers] = useState([]);
 
-  async function getUsers() {
+  async function getUsuarios() {
     // Chamada API
-    await api.getUsers().then(
+    await api.getUsuarios().then(
       (response) => {
         console.log(response.data.users);
         setUsers(response.data.users);
@@ -44,7 +44,7 @@ function listUsuarios() {
   });
 
   useEffect(() => {
-    getUsers();
+    getUsuarios();
   }, []);
 
   return (
