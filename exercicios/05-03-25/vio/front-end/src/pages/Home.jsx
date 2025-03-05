@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Bem-vindo ao sistema de eventos</h1>
       <h3>Lista de Eventos</h3>
       <Button  variant="contained" component={Link} to="/eventos">
         Lista de Eventos
