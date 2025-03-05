@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import api from "../axios/axios";
+import {Link} from "react-router-dom"
 
 function Cadastro() {
   const [user, setUser] = useState({
@@ -134,6 +135,7 @@ function Cadastro() {
           >
             Entrar
           </Button>
+          <Link to="/usuarios">Ir para Lista de Usuários</Link>
         </Box>
       </Box>
     </Container>

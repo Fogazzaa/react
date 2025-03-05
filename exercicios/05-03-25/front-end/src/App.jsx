@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ListUsers from "./pages/listUsers";
+import ListUsuarios from "./pages/listUsuarios";
 import ListEventos from "./pages/listEventos";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
@@ -10,7 +10,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/users" element={<ListUsers />} />
+          <Route path="/usuarios" element={<ListUsuarios />} />
           <Route path="/eventos" element={<ListEventos />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/" element={<Login />} />

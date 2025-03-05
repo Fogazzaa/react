@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "../axios/axios";
+import { Link } from "react-router-dom";
 
 // Imports para criação de tabela
 import Table from "@mui/material/Table";
@@ -9,12 +10,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 
 // TableBody é onde colocamos o conteúdo
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 
-function listUsers  () {
+import Button from "@mui/material/Button";
+
+function listUsuarios() {
   const [users, setUsers] = useState([]);
 
   async function getUsers() {
@@ -59,8 +62,11 @@ function listUsers  () {
           <TableBody>{listUsers}</TableBody>
         </Table>
       </TableContainer>
+      <Button fullWidth variant="contained" component={Link} to="/">
+        Sair
+      </Button>
     </div>
   );
 }
 
-export default listUsers  ;
+export default listUsuarios;

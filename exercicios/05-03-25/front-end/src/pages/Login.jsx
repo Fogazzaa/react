@@ -102,7 +102,7 @@ function Login() {
           >
             Entrar
           </Button>
-          <Link></Link>
+          <Link to="/cadastro">Ir para cadastro</Link>
         </Box>
       </Box>
     </Container>
