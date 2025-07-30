@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 6,
     borderLeftWidth: 5,
-    borderLeftColor: '#28a745',
+    borderLeftColor: '#000000ff',
   },
   name: {
     fontSize: 19,

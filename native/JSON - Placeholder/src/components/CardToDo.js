@@ -6,13 +6,12 @@ const CardToDo = ({ title, completed: initialCompleted, userName }) => {
   const [completed, setCompleted] = useState(initialCompleted);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, completed && styles.cardCompleted]}>
       <View style={styles.row}>
         <Checkbox
           value={completed}
           onValueChange={setCompleted}
           style={styles.checkbox}
-          color={completed ? '#000000ff' : '#cccccc'}
         />
         <Text style={[styles.title, completed && styles.completedText]}>{title}</Text>
       </View>
@@ -25,45 +24,55 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    padding: 20,
-    marginVertical: 10,
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    marginVertical: 8,
     marginHorizontal: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 6,
-    borderLeftWidth: 5,
-    borderLeftColor: '#000000ff',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 8,
+    borderLeftWidth: 6,
+    borderLeftColor: '#FF0000',
+    transition: 'all 0.3s ease-in-out',
+  },
+  cardCompleted: {
+    borderLeftColor: '#4CAF50',
+    opacity: 0.8,
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
+    alignItems: 'flex-start',
+    marginBottom: 8,
   },
   checkbox: {
-    marginRight: 10,
-    width: 24,
-    height: 24,
-    borderRadius: 4,
+    marginRight: 12,
+    width: 22,
+    height: 22,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#888',
   },
   title: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#333333',
-    flexShrink: 1,
-    fontWeight: '500',
+    flex: 1,
+    fontWeight: '600',
+    lineHeight: 24,
   },
   completedText: {
     textDecorationLine: 'line-through',
-    color: '#999999',
+    color: '#888888',
     fontWeight: '400',
+    fontStyle: 'italic',
   },
   userName: {
-    fontSize: 13,
-    color: '#777777',
-    fontStyle: 'italic',
+    fontSize: 12,
+    color: '#666666',
+    fontStyle: 'normal',
     textAlign: 'right',
-    marginTop: 8,
+    marginTop: 6,
   },
 });
 
