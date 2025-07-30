@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import CardPost from '../components/CardPost';
-import sheets from '../axios/api';
+import api from '../axios/api';
 import Header from '../components/Header';
 
 const Posts = () => {
@@ -14,8 +14,8 @@ const Posts = () => {
     const fetchPostsAndUsers = async () => {
       try {
         const [postsResponse, usersResponse] = await Promise.all([
-          sheets.getAllPosts(),
-          sheets.getAllUsers(),
+          api.getAllPosts(),
+          api.getAllUsers(),
         ]);
 
         const usersMap = usersResponse.data.reduce((acc, user) => {

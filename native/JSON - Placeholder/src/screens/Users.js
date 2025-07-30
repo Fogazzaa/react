@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import CardUser from '../components/CardUser';
-import sheets from '../axios/api';
+import api from '../axios/api';
 import Header from '../components/Header';
 
 const Users = () => {
@@ -12,7 +12,7 @@ const Users = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await sheets.getAllUsers();
+        const response = await api.getAllUsers();
         setUsers(response.data);
       } catch (err) {
         setError('Falha ao carregar usuários.');
